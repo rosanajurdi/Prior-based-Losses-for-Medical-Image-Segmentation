@@ -62,7 +62,7 @@ class contour_loss():
         big_pen: Tensor = (cl_pred - target_skeleton) ** 2
         contour_loss = big_pen / (w * h)
     
-        return contour_loss.mean(axis=0)*torch.tensor(np.array([1,0,0]))
+        return contour_loss.mean(axis=0)
 
 def compute_morphogradient(segmentation):
     res = np.zeros(segmentation.shape)
