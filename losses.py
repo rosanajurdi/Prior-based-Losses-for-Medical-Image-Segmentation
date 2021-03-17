@@ -203,32 +203,6 @@ class HDDTBinaryLoss():
         return hd_loss
 
 
-class BorderIrregularityLoss():
-    def __init__(self, **kwargs):
-        # Self.idc is used to filter out some classes of the target mask. Use fancy indexing
-        self.idc: List[int] = kwargs["idc"]
-        print(f"Initialized {self.__class__.__name__} with {kwargs}")
-
-    def __call__(self, net_output: Tensor, target: Tensor, _: Tensor) -> Tensor:
-        """
-        net_output: (batch_size, 2, x,y,z)
-        target: ground truth, shape: (batch_size, 1, x,y,z)
-        """
-        
-        pc = net_output[:, self.idc, ...].type(torch.float32)
-        gt = target[:, self.idc, ...].type(torch.float32)
-        with torch.no_grad():
-            smooth = SmoothBoundary((gt>0.5)*1.00) + gt - gt*SmoothBoundary((gt>0.5)*1.00)
-        # print('pc_dist.shape: ', pc_dist.shape)
-        pred_H_index = 2*(pc*smooth)/(pc+smooth -pc*smooth +10e-7)
-        GT_H_index = 2*(gt*smooth)/(gt+smooth - gt*smooth+10e-7)
-        borderI_error = (pred_H_index.mean(axis = (2,3)) - GT_H_index.mean(axis = (2,3)))**2
-        
-        hd_loss = 10*borderI_error.sum()
-
-        return hd_loss
-
-
 class soft_cldice_loss():
     '''
     inputs shape  (batch, channel, height, width).
