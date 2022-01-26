@@ -7,7 +7,7 @@ Midl: A Surprisingly Effective Perimeter-based Loss for Medical Image Segmentati
 The code is an extension of https://github.com/LIVIAETS/boundary-loss with additinal scripts, functions and Modalities. 
 1. Step 1: Download the required data (nifty format) from the Decathlone challenge
 2. Run slice_decathlone.py(with retain=0) to transform the data from nifty to .npy format 
-3. Run Generate_KFOLDS.py to create the required folds and their corresponding text files. 
+3. Run KFOLD_split_dataset.py to create the required folds and their corresponding text files. 
 
 
 In the .py script losses you can find all the losses used in the benchmark as well as the Contour-based loss. 
