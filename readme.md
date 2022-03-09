@@ -29,6 +29,12 @@ The datasets explored are from a variety of medical image segmentation challenge
 
 You can just plugin the name of the loss in the losses argument in the main script and run the program. 
 
+Citation
+
+If you use this benchmark in your experiments or for your loss, please consider citating the following paper:
+
+
+
 
 **TO DO** \\
 - Code should be cleaned and divided into project compartements . \\
