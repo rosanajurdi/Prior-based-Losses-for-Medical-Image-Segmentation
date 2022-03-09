@@ -1,3 +1,4 @@
+
 This repository contains the code for the paper: **Effect of Prior-based Losses on Segmentation Performance: A Benchmark** and **A Surprisingly Effective Perimeter-based Loss for Medical Image Segmentation.**
 
 
@@ -6,7 +7,7 @@ The benchmark of establishes performance of four recent prior-based losses for a
 The perimeter loss paper (https://openreview.net/forum?id=NDEmtyb4cXu) can be found in losses.py script. 
  
 # Installation and Dependencies
- 
+
 For installation and dependencies, please check this [repository](https://github.com/LIVIAETS/boundary-loss). The code for the nechmark in this repository is an extension of https://github.com/LIVIAETS/boundary-loss with additinal scripts, functions and Modalities.
 
 # Difference from the orginal framework in [repository](https://github.com/LIVIAETS/boundary-loss):
@@ -31,13 +32,20 @@ Note: for the ISLES and WMH datasets, please refer to the original [repository](
 - make sure to specify the number of samples in the validation set. In the paper,  splits were conducted according to 80 % training 20 % testing. 
 - make sure to specify the propper dataset class corresponding to the name of dataset.
 
-                                        Example: `ds = Decathlon(root_dir=root_path, typ=typ)` 
+                         Example: `ds = Decathlon(root_dir=root_path, typ=typ)` 
+## Training the networks 
 
 
+## Inference: 
 
+### the output of the training script: 
+After you train your networks, you will have:
+- metrics.py script which contain the loss evolution as well as the generic accuracy metrics such as the Dice accuracy (as specified by the script) 
+- best.pkl  which is the model you have trained; 
+- 
 You can just plugin the name of the loss in the losses argument in the main script and run the program. 
 
-Citation
+## Citation
 
 If you use this benchmark in your experiments or for your loss, please consider citating the following paper:
 
