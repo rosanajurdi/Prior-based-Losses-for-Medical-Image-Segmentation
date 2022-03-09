@@ -58,8 +58,8 @@ class contour_loss():
 
         b, _, w, h = pc.shape
         cl_pred = contour(pc).sum(axis=(2,3))
-        target_skeleton = contour(tc).sum(axis=(2,3))
-        big_pen: Tensor = (cl_pred - target_skeleton) ** 2
+        target_contour = contour(tc).sum(axis=(2,3))
+        big_pen: Tensor = (cl_pred - target_contour) ** 2
         contour_loss = big_pen / (w * h)
     
         return contour_loss.mean(axis=0)
