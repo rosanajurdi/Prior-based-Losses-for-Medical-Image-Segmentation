@@ -116,6 +116,16 @@ class GeneralizedDice():
 
 
 class SurfaceLoss():
+    '''
+    Boundary loss implementation 
+    Inputs:
+    @probs: probability maps provded from the output of the network 
+    @dc: distance maps computed when the dataset class is initialized
+    outputs:
+    @loss: boundary loss
+    @description: 
+    the loss finetunes the probability maps by the groundtruth distance map representations.
+    '''
     def __init__(self, **kwargs):
         # Self.idc is used to filter out some classes of the target mask. Use fancy indexing
         self.idc: List[int] = kwargs["idc"]
@@ -135,41 +145,11 @@ class SurfaceLoss():
         return loss
 
 
-class LoggedSurfaceLoss():
-    def __init__(self, **kwargs):
-        # Self.idc is used to filter out some classes of the target mask. Use fancy indexing
-        self.idc: List[int] = kwargs["idc"]
-        print(f"Initialized {self.__class__.__name__} with {kwargs}")
-
-    def __call__(self, probs: Tensor, dist_maps: Tensor, _: Tensor) -> Tensor:
-        """
-        net_output: (batch_size, 2, x,y,z)
-        target: ground truth, shape: (batch_size, 1, x,y,z)
-        """
-        assert simplex(probs)
-        assert not one_hot(dist_maps)
-
-        pc = probs[:, self.idc, ...].type(torch.float32)    
-
-        with torch.no_grad():
-            pc_dist = torch.from_numpy(compute_edts_forhdloss(pc.detach().cpu().numpy()>0.5))
-            gt_dist = dist_maps[:, self.idc, ...].type(torch.float32)
-
-        pos_log = torch.where(gt_dist>0, torch.log(gt_dist), gt_dist)
-        twos_log = torch.where(pos_log<0, -torch.log(-pos_log), pos_log)
-
-        pc_pos_log = torch.where(pc_dist>0, torch.log(pc_dist), pc_dist)
-        pc_twos_log = torch.where(pc_pos_log<0, -torch.log(-pc_pos_log), pc_pos_log)
-
-        if pc_twos_log.device != pc.device:
-            pc_twos_log = pc_twos_log.to(pc.device).type(torch.float32)
-
-        multipled = einsum("bcwh,bcwh->bcwh", pc, twos_log)
-
-        return multipled.mean()
-
 
 class HDDTBinaryLoss():
+    '''
+    Hausdorf loss implementation for binary segmentation 
+    '''
     def __init__(self, **kwargs):
         # Self.idc is used to filter out some classes of the target mask. Use fancy indexing
         self.idc: List[int] = kwargs["idc"]
