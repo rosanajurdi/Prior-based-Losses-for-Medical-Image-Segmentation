@@ -6,7 +6,7 @@ The benchmark of establishes performance of four recent prior-based losses for a
 The perimeter loss paper (https://openreview.net/forum?id=NDEmtyb4cXu) can be found in losses.py script. 
  
 # Installation and Dependencies
-
+ 
 For installation and dependencies, please check this [repository](https://github.com/LIVIAETS/boundary-loss). The code for the nechmark in this repository is an extension of https://github.com/LIVIAETS/boundary-loss with additinal scripts, functions and Modalities.
 
 # Difference from the orginal framework in [repository](https://github.com/LIVIAETS/boundary-loss):
