@@ -1,8 +1,10 @@
 #!/usr/bin/env python3.6
+'''
+Script to compute metrics : Dice accuracy, hausdorf distance and the error on the number of connected components.
+'''
+import sys
+
 from skimage.measure import label, regionprops
-
-print('hi')
-
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 from pathlib import Path
@@ -13,15 +15,9 @@ from torch.autograd import Variable
 import sys
 import os
 import csv
-import sys
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation')
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation/DataSet')
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation/DataSet_Functions')
 
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation/Multi_Organ_Seg')
-sys.path.append('/home/eljurros/spare-workplace/Multi_Organ_Segmentation/Common_Scripts')
 from Label_Estimate_Helper_Functions import Get_contour_characteristics
-sys.path.append('/home/eljurros/spare-workplace/surface-loss-master')
+
 from utils import dice_coef, dice_batch, save_images, tqdm_, haussdorf, probs2one_hot, class2one_hot, numpy_haussdorf
 #root = '/home/2017011/reljur01/surface-loss-master/data/Prostate/FOLD_2/npy/val'
 #net_path = '/home/2017011/reljur01/surface-loss-master/data/Prostate/FOLD_2/results/clDice_with_coord/best2.pkl'
@@ -29,16 +25,17 @@ root='/media/eljurros/Transcend/CoordConv/ACDC/ACDC/FOLD_1/npy/val'
 net_path = '/media/eljurros/Transcend/Decathlone/ACDC/FOLD_1/size/best2.pkl'
 
 net = torch.load(net_path, map_location=torch.device('cpu'))
-#print(net)
+
 fieldnames = ['SLICE_ID', 'dice','haus',  'c_error']
 n_classes = 4
 n = 3
 #assert os.path.exists(os.path.join(net_path.split(os.path.basename(net_path))[0], 'predictions'))== False
 print('started this stupid work')
-exp_path = net_path.split('/best2.pkl')[0]
+exp_path = net_path.split('/best2.pkl')[0]. #Include the name of the checkpoint you want to use 
 name =os.path.basename(exp_path)
 folder_path = Path(exp_path, 'CSV_RESULTS')
 
+#create the directory you want your result text files to be stored in 
 folder_path.mkdir(parents=True, exist_ok=True)
 file_path = os.path.join(exp_path, name)
 fold_clean_H1 = open(os.path.join(folder_path, '{}_{}_clean.csv'.format(name,n)), "w")
