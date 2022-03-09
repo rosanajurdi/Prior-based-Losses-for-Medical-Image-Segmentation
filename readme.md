@@ -9,6 +9,11 @@ The perimeter loss paper (https://openreview.net/forum?id=NDEmtyb4cXu) can be fo
 
 For installation and dependencies, please check this [repository](https://github.com/LIVIAETS/boundary-loss). The code for the nechmark in this repository is an extension of https://github.com/LIVIAETS/boundary-loss with additinal scripts, functions and Modalities.
 
+# Difference from the orginal framework in [repository](https://github.com/LIVIAETS/boundary-loss):
+- addition of the Decathlon class(Dataset section). 
+- addition of the different losses (in losses.py script) 
+- addition of an inference script to compute prior metrics (inference_npy.py connected component error) 
+-
 # Datasets 
 
 The datasets explored are from a variety of medical image segmentation challenges including the [Decathlon](http://medicaldecathlon.com), the  [ISLES](http://www.isles-challenge.org) and the [WMH](https://wmh.isi.uu.nl) challenges. The data format from the Decathlon is in niffty format.; 
