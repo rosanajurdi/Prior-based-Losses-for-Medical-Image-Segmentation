@@ -27,6 +27,10 @@ The datasets explored are from a variety of medical image segmentation challenge
 ## Step 1: Preparing the dataset for the code
 
 1. Download the required data (nifty format) from the [Decathlone challenge](http://medicaldecathlon.com)
+   - the dataset will be in nifty format in 3 folders : (imagesTr, labelsTr, imagesTs)
+   - In this benchmark, we include results on validation datasets i.e we split the (imagesTr, labelsTr) into train and validation and benchmark results on the validation set 
+   - Validation was conducted via 3 monte carlo simulations.
+   - Place the (imagesTr, labelsTr) in a folder under the name ..nifty/nifty/ROOT
 2. Run the [KFOLD_split_dataset.py](https://github.com/rosanajurdi/DataSET_module) with the proper dataset class (See documentation).The script will create the required fold_K: (train, val) and their corresponding text files (Make sure to specify ) 
 3. Run slice_decathlone.py(with retain=0) to transform the data from nifty to .npy format (The output will be the transformed data nifty -> .npy)
 
