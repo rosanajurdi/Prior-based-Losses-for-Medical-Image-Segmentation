@@ -25,21 +25,24 @@ In addition to the requirements in [repository](https://github.com/LIVIAETS/boun
 The datasets explored are from a variety of medical image segmentation challenges including the [Decathlon](http://medicaldecathlon.com), the  [ISLES](http://www.isles-challenge.org) and the [WMH](https://wmh.isi.uu.nl) challenges. The data format from the Decathlon is in niffty format.; 
 
 ## Step 1: Preparing the dataset for the code
-
+### Splitting into train and validation 
 1. Download the required data (nifty format) from the [Decathlone challenge](http://medicaldecathlon.com)
    - the dataset will be in nifty format in 3 folders : (imagesTr, labelsTr, imagesTs)
    - In this benchmark, we include results on validation datasets i.e we split the (imagesTr, labelsTr) into train and validation and benchmark results on the validation set 
    - Validation was conducted via 3 monte carlo simulations.
-   - Place the (imagesTr, labelsTr) in a folder under the name ..nifty/nifty/ROOT
+   - Place the (imagesTr, labelsTr) in a folder under the name ../nifty/ROOT
 2. Run the [KFOLD_split_dataset.py](https://github.com/rosanajurdi/DataSET_module) with the proper dataset class (See documentation).The script will create the required fold_K: (train, val) and their corresponding text files (Make sure to specify ) 
-3. Run slice_decathlone.py(with retain=0) to transform the data from nifty to .npy format (The output will be the transformed data nifty -> .npy)
-
-Note: for the ISLES and WMH datasets, please refer to the original [repository](https://github.com/LIVIAETS/boundary-loss).
-
-**Notes**:
+### From nifty to numpy: 
+Conversion from nifty to numpy can be done via [slice_decathlone.py(with retain=0)](https://github.com/rosanajurdi/Prior-based-Losses-for-Medical-Image-Segmentation/blob/master/slice_decathlon.py) to transform the data from nifty to .npy format:
+Variables to initialize: \\
+- source_dir: the path to your split data (obtained by running the KFOLD_split_dataset.py script )
+- dest_dir: the path where you want to store the npy converted data. (usually ../npy)
+Note: 
+- for decathlon datasets of two organs, please check [slice_decathlon_2organs.py](https://github.com/rosanajurdi/Prior-based-Losses-for-Medical-Image-Segmentation/blob/master/slice_decathlon_2organs.py)
+- for the ISLES and WMH datasets, please refer to the original [repository](https://github.com/LIVIAETS/boundary-loss).
 - make sure to specify the number of samples in the validation set. In the paper,  splits were conducted according to 80 % training 20 % testing. 
-- make sure to specify the propper dataset class corresponding to the name of dataset.
-
+- make sure to specify the proper dataset class corresponding to the name of dataset.
+- There is a slicing script for each dataset : Decathlon(single), Decthlon(multi), isles, wmh, Prostate, and acdc.
                          Example: `ds = Decathlon(root_dir=root_path, typ=typ)` 
 ## Training the networks 
 
