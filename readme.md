@@ -9,7 +9,11 @@ The perimeter loss paper (https://openreview.net/forum?id=NDEmtyb4cXu) can be fo
 # Installation and Dependencies
 
 For installation and dependencies, please check this [repository](https://github.com/LIVIAETS/boundary-loss). The code for the nechmark in this repository is an extension of https://github.com/LIVIAETS/boundary-loss with additinal scripts, functions and Modalities.
-
+In addition to the requirements in [repository](https://github.com/LIVIAETS/boundary-loss), you are also required to install :
+- pillow (for visualization)
+- tqdm
+- 
+- 
 # Difference from the orginal framework in [repository](https://github.com/LIVIAETS/boundary-loss):
 - addition of the Decathlon class(Dataset section). 
 - addition of the different losses (in losses.py script) 
@@ -23,8 +27,8 @@ The datasets explored are from a variety of medical image segmentation challenge
 ## Step 1: Preparing the dataset for the code
 
 1. Download the required data (nifty format) from the [Decathlone challenge](http://medicaldecathlon.com)
-2. Run slice_decathlone.py(with retain=0) to transform the data from nifty to .npy format (The output will be the transformed data nifty -> .npy)
-3. Run the [KFOLD_split_dataset.py](https://github.com/rosanajurdi/DataSET_module) with the proper dataset class (See documentation).The script will create the required fold_K: (train, val) and their corresponding text files (Make sure to specify ) 
+2. Run the [KFOLD_split_dataset.py](https://github.com/rosanajurdi/DataSET_module) with the proper dataset class (See documentation).The script will create the required fold_K: (train, val) and their corresponding text files (Make sure to specify ) 
+3. Run slice_decathlone.py(with retain=0) to transform the data from nifty to .npy format (The output will be the transformed data nifty -> .npy)
 
 Note: for the ISLES and WMH datasets, please refer to the original [repository](https://github.com/LIVIAETS/boundary-loss).
 
