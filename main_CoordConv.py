@@ -271,7 +271,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--csv", type=str, default= 'metrics.csv')
     parser.add_argument("--workdir", type=str, default = '/media/eljurros/Transcend/Decathlone/melanoma/FOLD_1')
     parser.add_argument('--batch_size', type=int, default=3)
-    parser.add_argument("--cpu", action='store_true', default = True)
+    parser.add_argument("--cpu", action='store_true', default = False)
     parser.add_argument("--debug", action="store_true", default = False)
     parser.add_argument("--modalities", type=int, default=3)
     parser.add_argument("--weights", type=str, default='', help="Stored weights to restore")
