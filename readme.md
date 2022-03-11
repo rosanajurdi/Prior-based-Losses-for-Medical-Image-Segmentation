@@ -90,10 +90,3 @@ scheduler_params: {}
   
 If you use this benchmark in your experiments or for your loss, please consider citating the following paper:  
   
-  
-  
-  
-**TO DO** \\  
-- Code should be cleaned and divided into project compartements . \\  
-- Functions should be documented  
-- Documentation should be provided !!!

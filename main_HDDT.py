@@ -256,13 +256,13 @@ def run(args: argparse.Namespace) -> None:
 
 def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Hyperparams')
-    parser.add_argument('--dataset', type=str, default='/home/2017011/reljur01/data/isles/FOLD_1/npy')
+    parser.add_argument('--dataset', type=str, default='/Users/rosana.eljurdi/Desktop/Benchmark/Task02_Heart/FOLD_1/npy2')
     parser.add_argument("--csv", type=str, default= 'metrics.csv')
-    parser.add_argument("--workdir", type=str, default = '/home/2017011/reljur01/data/isles/FOLD_1/results_newww/surface')
-    parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument("--workdir", type=str, default = '/Users/rosana.eljurdi/Desktop/Benchmark/Task02_Heart/FOLD_1/npy2/results')
+    parser.add_argument('--batch_size', type=int, default=2)
     parser.add_argument("--cpu", action='store_true', default = False)
-    parser.add_argument("--debug", action="store_true", default = False)
-    parser.add_argument("--modalities", type=int, default=5)
+    parser.add_argument("--debug", action="store_true", default = True)
+    parser.add_argument("--modalities", type=int, default=1)
     parser.add_argument("--weights", type=str, default='', help="Stored weights to restore")
     parser.add_argument('--n_epoch', nargs='?', type=int, default=200,
                         help='# of the epochs')
@@ -280,7 +280,7 @@ def get_args() -> argparse.Namespace:
 
     parser.add_argument("--losses", type=str, 
                         help="List of (loss_name, loss_params, bounds_name, bounds_params, fn, weight)", 
-                        default="[('GeneralizedDice', {'idc': [0, 1]}, None, None, None, 1), ('SurfaceLoss', {'idc': [1]}, None, None, None, 0.01)]")
+                        default="[('GeneralizedDice', {'idc': [0, 1]}, None, None, None, 1), ('HDDTBinaryLoss', {'idc': [1]}, None, None, None, 0.01)]")
     
     
     parser.add_argument("--folders", type=str,

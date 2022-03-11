@@ -12,7 +12,6 @@ from layers import conv_block, conv_block_3, maxpool, conv_decod_block
 
 
 from layers import upSampleConv, convBatch, residualConv
-from CoordConv_layers import CoordConv2d,Coordconv_block,CoordConv_residual_conv
 
 def weights_init(m):
     if type(m) == nn.Conv2d or type(m) == nn.ConvTranspose2d:
