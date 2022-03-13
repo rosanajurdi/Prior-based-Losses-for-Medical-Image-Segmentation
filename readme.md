@@ -102,6 +102,4 @@ n = 3 : number of classes without background
 ``` 
   
 ## Citation  
-  
-If you use this benchmark in your experiments or for your loss, please consider citating the following paper:  
-  
+
