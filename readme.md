@@ -81,10 +81,25 @@ scheduler_params: {}
   
   
 ## Inference:   
-### the output of the training script: After you train your networks, you will have:  
+### the output of the training script: 
+
+After you train your networks, you will have:
 - metrics.py script which contain the loss evolution as well as the generic accuracy metrics such as the Dice accuracy (as specified by the script)   
 - best.pkl  which is the model you have trained;   
-- You can just plugin the name of the loss in the losses argument in the main script and run the program.   
+- Best epoch folder that contains the image predictions corresponding to the best model saved.
+
+Aside from these results you can also run [inference_npy.py](https://github.com/rosanajurdi/Prior-based-Losses-for-Medical-Image-Segmentation/blob/master/inference_npy.py)
+this script computes the metrics (dice accuracy, haussdorf distance, connected component error) on each sample in the given validation set.
+
+**description of variables:**
+
+``` 
+root: path to validation set under consideration. ex: '/media/eljurros/Transcend/CoordConv/ACDC/ACDC/FOLD_1/npy/val'
+net_path = : path to checkpoint.  ex: '/media/eljurros/Transcend/Decathlone/ACDC/FOLD_1/size/best2.pkl'
+net = torch.load(net_path, map_location=torch.device('cpu'))
+n_classes : number of classes with  background
+n = 3 : number of classes without background 
+``` 
   
 ## Citation  
   

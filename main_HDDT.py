@@ -280,11 +280,11 @@ def get_args() -> argparse.Namespace:
 
     parser.add_argument("--losses", type=str, 
                         help="List of (loss_name, loss_params, bounds_name, bounds_params, fn, weight)", 
-                        default="[('GeneralizedDice', {'idc': [0, 1]}, None, None, None, 1), ('HDDTBinaryLoss', {'idc': [1]}, None, None, None, 0.01)]")
+                        default="[('GeneralizedDice', {'idc': [0, 1]}, None, None, None, 1), ('contour_loss', {'idc': [1]}, None, None, None, 0.01)]")
     
     
     parser.add_argument("--folders", type=str,
-                        help="List of (subfolder, transform, is_hot)", default="[('in_npy', torch.tensor, False), ('gt_npy', gt_transform, True)]+[('gt_npy', gt_transform, True), \
+                        help="List of (subfolder, transform, is_hot)", default="[('in_npy', torch.tensor, False), ('gt_npy', gt_transform, True)]+[('gt_npy', gt_transform, False), \
     ('gt_npy', gt_transform, True)]  " )
     
     #

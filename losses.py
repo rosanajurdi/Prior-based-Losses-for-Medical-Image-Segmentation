@@ -42,7 +42,7 @@ def soft_skeletonize(x, thresh_width=10):
 class contour_loss():
     '''
     inputs shape  (batch, channel, height, width).
-    calculate clDice loss
+    calculate the contour loss
     Because pred and target at moment of loss calculation will be a torch tensors
     it is preferable to calculate target_skeleton on the step of batch forming,
     when it will be in numpy array format by means of opencv

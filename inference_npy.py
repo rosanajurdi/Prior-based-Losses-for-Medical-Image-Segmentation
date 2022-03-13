@@ -25,12 +25,13 @@ root='/media/eljurros/Transcend/CoordConv/ACDC/ACDC/FOLD_1/npy/val'
 net_path = '/media/eljurros/Transcend/Decathlone/ACDC/FOLD_1/size/best2.pkl'
 
 net = torch.load(net_path, map_location=torch.device('cpu'))
-
-fieldnames = ['SLICE_ID', 'dice','haus',  'c_error']
 n_classes = 4
 n = 3
+
+fieldnames = ['SLICE_ID', 'dice','haus',  'c_error']
+
 #assert os.path.exists(os.path.join(net_path.split(os.path.basename(net_path))[0], 'predictions'))== False
-print('started this stupid work')
+
 exp_path = net_path.split('/best2.pkl')[0]. #Include the name of the checkpoint you want to use 
 name =os.path.basename(exp_path)
 folder_path = Path(exp_path, 'CSV_RESULTS')
