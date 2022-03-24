@@ -1,6 +1,6 @@
 
 
-                                          ![](resources/Meta-features/Dice.png)
+![](resources/Meta-features/Dice.png)
 
 
 
