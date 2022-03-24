@@ -1,6 +1,8 @@
 
-
-![](resources/Meta-features/Dice.png)
+<p align="left" width="100%">
+    <img width="100%" src="resources/Meta-features/Dice.png">
+</p>
+![]()
 
 
 
