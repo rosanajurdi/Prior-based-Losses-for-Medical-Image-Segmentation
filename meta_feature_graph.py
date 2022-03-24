@@ -34,35 +34,47 @@ key_note = {'isles':['case_'],'hippoH1':['hippocampus', 'H1'],'hipooH2':['hippoc
             'acdc-H1': ['patient','H1'], 'acdc-H2': ['patient','H2'],'acdc-H3': ['patient','H3'],
             'spleen': ['spleen'], 'atrium': ['la_'] , 'wmh': ['wmh']}
 
-COLOR_note = {'isles':'blue','hippoH1':'yellow','hipooH2':'green',
-            'prostateP1': 'red', 'prostateP2':'purple','colon':'black', 'acdc-H1': 'orange',
-              'acdc-H2': 'brown', 'acdc-H3': 'cyan', 'spleen':'magenta', 'atrium': 'lightcoral', 'wmh': 'grey'}
+COLOR_note = {'isles':'black','hippoH1':'lightgreen','hipooH2':'green',
+            'prostateP1': 'indigo', 'prostateP2':'purple','colon':'grey',
+              'acdc-H1': 'dodgerblue', 'acdc-H2': 'teal', 'acdc-H3': 'cyan',
+              'spleen':'magenta', 'atrium': 'red', 'wmh': 'lightcoral'}
 
-wmh_dataset = df
-fig, ax = plt.subplots()
 
-for n, Label in enumerate(['prostateP1', 'isles','prostateP2',  'hippoH1','hipooH2','acdc-H1', 'acdc-H2', 'acdc-H3', 'spleen', 'atrium', 'colon']):
-    print(Label)
-    LABEL = list(key_note[Label])
-    dataset = df[df['id'].str.contains(LABEL[0])]
-    dataset = dataset[dataset['id'].str.contains(LABEL[-1])]
-    wmh_dataset = wmh_dataset.drop(dataset.index)
+for loss in ['Dice', 'clDice', 'Boundary','Perimeter', 'Haussdorf', 'size']:
+    wmh_dataset = df
+    fig, ax = plt.subplots()
+
+    for n, Label in enumerate(['prostateP1', 'isles','prostateP2',  'hippoH1','hipooH2','acdc-H1', 'acdc-H2', 'acdc-H3', 'spleen', 'atrium']):
+        print(Label)
+        LABEL = list(key_note[Label])
+        dataset = df[df['id'].str.contains(LABEL[0])]
+        dataset = dataset[dataset['id'].str.contains(LABEL[-1])]
+
+        sampled_mean = []
+        sampled_size = []
+        for i in range(100):
+            sample = dataset.sample(n=50)
+            sampled_mean.append(sample.mean()['clDice']*100)
+            sampled_size.append(sample.mean()['Organ-Size'])
+            ax.scatter(sampled_size,sampled_mean, c=COLOR_note[Label])
+        wmh_dataset = wmh_dataset.drop(dataset.index)
+        print(LABEL)
     sampled_mean = []
     sampled_size = []
     for i in range(100):
-        sample = dataset.sample(n=50)
-        sampled_mean.append(sample.mean()['Dice'])
+        sample = wmh_dataset.sample(n=50)
+        sampled_mean.append(sample.mean()['clDice']*100)
         sampled_size.append(sample.mean()['Organ-Size'])
-        ax.scatter(sampled_size,sampled_mean, c=COLOR_note[Label])
-    print(LABEL)
+        ax.scatter(sampled_size, sampled_mean, c=COLOR_note['wmh'])
+    plt.xlabel('Average Size Percentage of organ w.r.t the image ')
+    plt.ylabel('Dice Accuracy ')
+    plt.savefig('/Users/rosana.eljurdi/PycharmProjects/Prior-based-Losses-for-Medical-Image-Segmentation/resources/Meta-features/{}'.format(loss))
 
-for i in range(100):
-    sample = wmh_dataset.sample(n=50)
-    sampled_mean.append(sample.mean()['Dice'])
-    sampled_size.append(sample.mean()['Organ-Size'])
-    ax.scatter(sampled_size, sampled_mean, c=COLOR_note['wmh'])
+
+
 # ax.legend()
 #ax.grid(True)
+
 plt.show()
 
 print(dataset)

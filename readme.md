@@ -1,4 +1,4 @@
-  
+![alt text](img/1.png 
 This repository contains the code for the paper: **Effect of Prior-based Losses on Segmentation Performance: A Benchmark** and **A Surprisingly Effective Perimeter-based Loss for Medical Image Segmentation.**  
   
   
@@ -100,6 +100,11 @@ net = torch.load(net_path, map_location=torch.device('cpu'))
 n_classes : number of classes with  background
 n = 3 : number of classes without background 
 ``` 
-  
+
+## Meta-feature Analysis:
+The summary of the results for all the datasets and their performances across the different losses are included in this [excel sheet](https://github.com/rosanajurdi/Prior-based-Losses-for-Medical-Image-Segmentation/blob/master/BenchmarkResults.csv)
+In addition, the sheet contains some information relative to meta features such as the organ size,the number of connected components (both groundtruth and predicted), and border irregularty index(not analyzed in the paper) as well as the nulber of classes to be segmented and the dataset modalities.
+The meta-feature figure related to the performance of the loss w.r.t  the organ size could be found in the [script](https://github.com/rosanajurdi/Prior-based-Losses-for-Medical-Image-Segmentation/blob/master/meta_feature_graph.py)
+
 ## Citation  
 
