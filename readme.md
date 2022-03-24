@@ -1,4 +1,4 @@
-![](resources/Meta-features/Dice.png)
+![](resources/Meta-features/Dice.pdf){width=75%}
 
 
 
@@ -8,6 +8,7 @@ This repository contains the code for the paper: **Effect of Prior-based Losses 
 The benchmark of establishes performance of four recent prior-based losses for across 8 different medical datasets of various tasks and modalities. The main objective is to provide intuition onto which losses to choose given a particular task or dataset, based on dataset characteristics and properties. The proposed benchmark is conducted via a unified segmentation network and learning environment chich can be found (https://github.com/LIVIAETS/boundary-loss).   
    
 The perimeter loss paper (https://openreview.net/forum?id=NDEmtyb4cXu) can be found in losses.py script.   
+   
    
 # Installation and Dependencies  
   
