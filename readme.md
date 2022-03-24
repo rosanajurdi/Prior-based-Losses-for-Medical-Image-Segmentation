@@ -1,5 +1,7 @@
-![](resources/Meta-features/Dice.pdf){width=75%}
 
+\begin{center} <br>
+\includegraphics[width=8in]{resources/Meta-features/Dice.jpg} <br>
+\end{center}
 
 
 This repository contains the code for the paper: **Effect of Prior-based Losses on Segmentation Performance: A Benchmark** and **A Surprisingly Effective Perimeter-based Loss for Medical Image Segmentation.**  
