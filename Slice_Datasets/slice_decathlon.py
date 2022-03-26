@@ -198,8 +198,8 @@ def main(args: argparse.Namespace):
 def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Slicing parameters')
     
-    parser.add_argument('--source_dir', type=str, default='/Users/rosana.eljurdi/Desktop/Benchmark/Task02_Heart/nifty/FOLD_1')
-    parser.add_argument('--dest_dir', type=str, default='/Users/rosana.eljurdi/Desktop/Benchmark/Task02_Heart/FOLD_1/npy2')
+    parser.add_argument('--source_dir', type=str, default='/Users/rosana.eljurdi/Documents/Benchmark/Task02_Heart/nifty/FOLD_1')
+    parser.add_argument('--dest_dir', type=str, default='/Users/rosana.eljurdi/Documents/Benchmark/Task02_Heart/FOLD_1/npy3')
     parser.add_argument('--img_dir', type=str, default="IMG")
     parser.add_argument('--gt_dir', type=str, default="GT")
     parser.add_argument('--shape', type=int, nargs="+", default=[256, 256])

@@ -100,7 +100,8 @@ def do_epoch(mode: str, net: Any, device: Any, loader: DataLoader, epc: int,
         ziped = zip(loss_fns, labels, loss_weights, bounds)
         losses = [w * loss_fn(pred_probs, label, bound) for loss_fn, label, w, bound in ziped]
         loss = reduce(add, losses)
-        assert loss.shape == (), loss.shape
+        print(loss.shape)
+        #assert loss.shape == (), loss.shape
 
         # Backward
         if optimizer:
@@ -256,11 +257,11 @@ def run(args: argparse.Namespace) -> None:
 
 def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Hyperparams')
-    parser.add_argument('--dataset', type=str, default='/Users/rosana.eljurdi/Desktop/Benchmark/Task02_Heart/FOLD_1/npy2')
+    parser.add_argument('--dataset', type=str, default='/Users/rosana.eljurdi/Documents/Benchmark/Task02_Heart/FOLD_1/npy2')
     parser.add_argument("--csv", type=str, default= 'metrics.csv')
-    parser.add_argument("--workdir", type=str, default = '/Users/rosana.eljurdi/Desktop/Benchmark/Task02_Heart/FOLD_1/npy2/results')
+    parser.add_argument("--workdir", type=str, default = '/Users/rosana.eljurdi/Documents/Benchmark/Task02_Heart/FOLD_1/npy2/results')
     parser.add_argument('--batch_size', type=int, default=2)
-    parser.add_argument("--cpu", action='store_true', default = False)
+    parser.add_argument("--cpu", action='store_true', default = True)
     parser.add_argument("--debug", action="store_true", default = True)
     parser.add_argument("--modalities", type=int, default=1)
     parser.add_argument("--weights", type=str, default='', help="Stored weights to restore")

@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 print("hi")
 
 
-df = pd.read_csv('/Users/rosana.eljurdi/PycharmProjects/Prior-based-Losses-for-Medical-Image-Segmentation/BenchmarkResults.csv')
+df = pd.read_csv('/Results/BenchmarkResults.csv')
 
 df[7657:8766]
 df = df.loc[df['sz1'] != 0]
